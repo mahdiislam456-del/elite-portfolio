@@ -17,7 +17,7 @@ export default function Hero({ onOpenHire, onOpenTerminal }: HeroProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -29,14 +29,14 @@ export default function Hero({ onOpenHire, onOpenTerminal }: HeroProps) {
     setTilt({ x: rotateX, y: rotateY });
   };
 
-  const handleMouseLeave = () => {
+  const handlePointerLeave = () => {
     setTilt({ x: 0, y: 0 });
     setIsHovered(false);
   };
 
-  const handleMouseEnter = () => {
+  const handlePointerEnter = (e: React.PointerEvent<HTMLDivElement>) => {
     setIsHovered(true);
-    sound.playSwipe();
+    if (e.pointerType === 'mouse') sound.playSwipe();
   };
 
   // Stagger animation container
@@ -148,12 +148,13 @@ export default function Hero({ onOpenHire, onOpenTerminal }: HeroProps) {
         >
           <div
             ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onPointerMove={handlePointerMove}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}
             style={{
               transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(${isHovered ? 1.02 : 1}, ${isHovered ? 1.02 : 1}, 1)`,
               transition: isHovered ? 'transform 0.1s ease-out' : 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+              touchAction: 'pan-y',
             }}
             className="relative w-full max-w-[420px] aspect-[4/5] rounded-2xl p-3 bg-gradient-to-b from-[rgba(237,231,220,0.16)] via-[rgba(237,231,220,0.06)] to-transparent border border-[rgba(237,231,220,0.14)] shadow-[0_24px_50px_rgba(0,0,0,0.7)] group cursor-pointer overflow-hidden"
           >
