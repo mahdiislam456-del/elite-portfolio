@@ -1,0 +1,9 @@
+{
+  "name": "mahdi-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npx --yes serve .",
+    "dev": "npx --yes serve ."
+  }
+}

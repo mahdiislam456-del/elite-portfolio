@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-ground: #090A0E;
+  --color-ground-card: #11141A;
+  --color-ground-card-hover: #161B22;
+  --color-amber-accent: #E8913C;
+  --color-amber-light: #FFAC59;
+  --color-teal-accent: #2E6B72;
+  --color-teal-light: #3DA1AB;
+  --color-ink: #EDE7DC;
+  --color-ink-muted: #9EA5A8;
+  --color-hairline: rgba(237, 231, 220, 0.12);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans), sans-serif;
+  background-color: #090A0E;
+  color: #EDE7DC;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Subtle architectural grid background */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(237, 231, 220, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(237, 231, 220, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Glowing text accent */
+.glow-amber {
+  text-shadow: 0 0 24px rgba(232, 145, 60, 0.4);
+}
+
+.glow-teal {
+  text-shadow: 0 0 24px rgba(46, 107, 114, 0.45);
+}
+
+/* Glass backdrop */
+.glass-panel {
+  background: rgba(17, 20, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(237, 231, 220, 0.1);
+}
+
+/* Card perspective container */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090A0E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(237, 231, 220, 0.18);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 145, 60, 0.5);
+}
